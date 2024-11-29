@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background: linear-gradient(135deg, #4CAF50, #FFEB3B, #2196F3);
+            /* Gradient from green (rock), yellow (paper), to blue (scissors) */
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 15px;
+            margin: auto;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 23px;
+            cursor: pointer;
+            border-radius: 5px              ;
+        }
+
+        #rock {
+            background-color: blue;
+            color: white;
+        }
+
+        #paper {
+            background-color: rgb(141, 209, 141);
+            color: white;
+        }
+
+        #scissors {
+            background-color: rgb(194, 135, 58);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+    <h1>Rock, Paper, Scissors Game</h1>
+    <div class="button-container">
+        <button onclick="playGame('rock')" id="rock">✊Rock</button>
+        <button onclick="playGame('paper')" id="paper">🤚Paper</button>
+        <button onclick="playGame('scissors')" id="scissors"> ✌️Scissors</button>
+    </div>
+    <div id="result"></div>
+</div>
+    <script>
+        function playGame(playerChoice) {
+            const choices = ['rock', 'paper', 'scissors'];
+
+            // Get computer's choice randomly
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+            // Display the choices
+            const resultDisplay = document.getElementById('result');
+            resultDisplay.innerHTML = `Player chose: ${playerChoice}<br>Computer chose: ${computerChoice}`;
+            resultDisplay.style.textAlign = 'center';
+            resultDisplay.style.padding = '15px'
+            resultDisplay.style.fontSize = '20px'
+
+            // Determine the winner
+            let result = '';
+            if (playerChoice === computerChoice) {
+                result = 'It\'s a draw!';
+            } else if (
+                (playerChoice === 'rock' && computerChoice === 'scissors') ||
+                (playerChoice === 'scissors' && computerChoice === 'paper') ||
+                (playerChoice === 'paper' && computerChoice === 'rock')
+            ) {
+                result = 'You win!';
+            } else {
+                result = 'Computer wins!';
+            }
+
+            // Display the result
+            resultDisplay.innerHTML += `<br>${result}`;
+        }
+
+    </script>
+</body>
+
+</html>
